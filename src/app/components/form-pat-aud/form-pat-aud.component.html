@@ -1,0 +1,246 @@
+<div *ngIf="!isLoading" class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 lg:w-2/3 xl:w-1/2">
+        <h2 class="text-xl font-bold text-center mb-4">Formulario de Información</h2>
+
+        <form [formGroup]="form">
+            <div *ngIf="formuser == 'USERPACIENTE'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+                <!-- Apellidos -->
+                <mat-form-field class="w-full">
+                    <mat-label>Apellidos</mat-label>
+                    <input matInput formControlName="apellidos">
+                    <mat-error *ngIf="form.get('apellidos')?.invalid && form.get('apellidos')?.touched">Este campo es
+                        obligatorio.</mat-error>
+                </mat-form-field>
+
+                <!-- Cédula -->
+                <mat-form-field class="w-full">
+                    <mat-label>Cédula</mat-label>
+                    <input matInput formControlName="cedula" type="text">
+                    <mat-error *ngIf="form.get('cedula')?.invalid && form.get('cedula')?.touched">
+                        La cédula debe tener al menos 5 caracteres.
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Ciudad -->
+                <mat-form-field class="w-full">
+                    <mat-label>Ciudad</mat-label>
+                    <input matInput formControlName="ciudad">
+                    <mat-error *ngIf="form.get('ciudad')?.invalid && form.get('ciudad')?.touched">Este campo es
+                        obligatorio.</mat-error>
+                </mat-form-field>
+
+                <!-- Dirección -->
+                <mat-form-field class="w-full">
+                    <mat-label>Dirección</mat-label>
+                    <input matInput formControlName="direccion">
+                    <mat-error *ngIf="form.get('direccion')?.invalid && form.get('direccion')?.touched">Este campo es
+                        obligatorio.</mat-error>
+                </mat-form-field>
+
+                <!-- Email -->
+                <mat-form-field class="w-full">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" type="email">
+                    <mat-error *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+                        Ingresa un correo electrónico válido.
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Fecha de Entrega -->
+                <mat-form-field class="w-full">
+                    <mat-label>Fecha de Entrega</mat-label>
+                    <input matInput formControlName="fechaEntrega">
+                    <mat-error *ngIf="form.get('fechaEntrega')?.invalid && form.get('fechaEntrega')?.touched">Este campo
+                        es obligatorio.</mat-error>
+                </mat-form-field>
+
+                <!-- Medicamento -->
+                <mat-form-field class="w-full">
+                    <mat-label>Medicamento</mat-label>
+                    <input matInput formControlName="medicamento1">
+                    <mat-error *ngIf="form.get('medicamento1')?.invalid && form.get('medicamento1')?.touched">Este campo
+                        es obligatorio.</mat-error>
+                </mat-form-field>
+
+                <!-- Nombres -->
+                <mat-form-field class="w-full">
+                    <mat-label>Nombres</mat-label>
+                    <input matInput formControlName="nombres">
+                    <mat-error *ngIf="form.get('nombres')?.invalid && form.get('nombres')?.touched">Este campo es
+                        obligatorio.</mat-error>
+                </mat-form-field>
+
+                <!-- Número de Medicamentos -->
+                <mat-form-field class="w-full">
+                    <mat-label>Número de Medicamentos</mat-label>
+                    <input matInput formControlName="numeroMedicamentos" type="number">
+                    <mat-error
+                        *ngIf="form.get('numeroMedicamentos')?.invalid && form.get('numeroMedicamentos')?.touched">Este
+                        campo es obligatorio y debe ser un número.</mat-error>
+                </mat-form-field>
+
+                <!-- Periodicidad de Entrega -->
+                <mat-form-field class="w-full">
+                    <mat-label>Periodicidad de Entrega</mat-label>
+                    <input matInput formControlName="periodicidadEntrega">
+                    <mat-error
+                        *ngIf="form.get('periodicidadEntrega')?.invalid && form.get('periodicidadEntrega')?.touched">Este
+                        campo es obligatorio.</mat-error>
+                </mat-form-field>
+
+                <!-- Teléfono -->
+                <mat-form-field class="w-full">
+                    <mat-label>Teléfono</mat-label>
+                    <input matInput formControlName="telefono" type="text">
+                    <mat-error *ngIf="form.get('telefono')?.invalid && form.get('telefono')?.touched">
+                        Ingresa un teléfono válido (7-10 dígitos).
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Tipo de Entrega -->
+                <mat-form-field class="w-full">
+                    <mat-label>Tipo de Entrega</mat-label>
+                    <input matInput formControlName="tipoEntrega">
+                    <mat-error *ngIf="form.get('tipoEntrega')?.invalid && form.get('tipoEntrega')?.touched">Este campo
+                        es obligatorio.</mat-error>
+                </mat-form-field>
+
+                <!-- Tipo de Id -->
+                <mat-form-field class="w-full">
+                    <mat-label>Tipo de Id</mat-label>
+                    <input matInput formControlName="tipoId">
+                    <mat-error *ngIf="form.get('tipoId')?.invalid && form.get('tipoId')?.touched">Este campo es
+                        obligatorio.</mat-error>
+                </mat-form-field>
+
+                <!-- Tipo de Registro -->
+                <mat-form-field class="w-full">
+                    <mat-label>Tipo de Registro</mat-label>
+                    <input matInput formControlName="tipoRegistro">
+                    <mat-error *ngIf="form.get('tipoRegistro')?.invalid && form.get('tipoRegistro')?.touched">Este campo
+                        es obligatorio.</mat-error>
+                </mat-form-field>
+
+                <mat-checkbox class="w-full" formControlName="isChecked" (change)="onCheckboxChange()">
+                    Sugerencia
+                  </mat-checkbox>
+                  
+                  <!-- Comentario -->
+                  <mat-form-field class="w-full" *ngIf="form.get('isChecked')?.value">
+                    <mat-label>Comentario</mat-label>
+                    <textarea matInput formControlName="comentario"></textarea>
+                    <mat-error *ngIf="form.get('comentario')?.invalid && form.get('comentario')?.touched">Este campo es obligatorio.</mat-error>
+                  </mat-form-field>
+
+                <!-- Aceptación Tratamiento de Datos -->
+                <mat-checkbox formControlName="isAccept" class="w-full" class="alinear">
+                    Acepto el tratamiento de datos
+                    <mat-icon (click)="openDialog()"
+                    >info</mat-icon>
+                </mat-checkbox>
+
+            </div>
+
+            <div *ngIf="formuser != 'USERPACIENTE'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+  
+                <!-- Apellidos -->
+                <mat-form-field class="w-full">
+                  <mat-label>Apellidos Acudiente</mat-label>
+                  <input matInput formControlName="apellidosAcudiente">
+                  <mat-error *ngIf="form.get('apellidosAcudiente')?.invalid && form.get('apellidosAcudiente')?.touched">Este campo es obligatorio.</mat-error>
+                </mat-form-field>
+              
+                <!-- Nombres -->
+                <mat-form-field class="w-full">
+                  <mat-label>Nombres Acudiente</mat-label>
+                  <input matInput formControlName="nombresAcudiente">
+                  <mat-error *ngIf="form.get('nombresAcudiente')?.invalid && form.get('nombresAcudiente')?.touched">Este campo es obligatorio.</mat-error>
+                </mat-form-field>
+              
+                <!-- Email -->
+                <mat-form-field class="w-full">
+                  <mat-label>Email Acudiente</mat-label>
+                  <input matInput formControlName="emailAcudiente" type="email">
+                  <mat-error *ngIf="form.get('emailAcudiente')?.invalid && form.get('emailAcudiente')?.touched">Ingresa un correo electrónico válido.</mat-error>
+                </mat-form-field>
+              
+                <!-- Ciudad -->
+                <mat-form-field class="w-full">
+                  <mat-label>Ciudad Acudiente</mat-label>
+                  <input matInput formControlName="ciudadAcudiente">
+                  <mat-error *ngIf="form.get('ciudadAcudiente')?.invalid && form.get('ciudadAcudiente')?.touched">Este campo es obligatorio.</mat-error>
+                </mat-form-field>
+              
+                <!-- Dirección -->
+                <mat-form-field class="w-full">
+                  <mat-label>Dirección Acudiente</mat-label>
+                  <input matInput formControlName="direccionAcudiente">
+                  <mat-error *ngIf="form.get('direccionAcudiente')?.invalid && form.get('direccionAcudiente')?.touched">Este campo es obligatorio.</mat-error>
+                </mat-form-field>
+              
+              
+                <!-- Teléfono -->
+                <mat-form-field class="w-full">
+                  <mat-label>Teléfono Acudiente</mat-label>
+                  <input matInput formControlName="telefonoAcudiente" type="text">
+                  <mat-error *ngIf="form.get('telefonoAcudiente')?.invalid && form.get('telefonoAcudiente')?.touched">Ingresa un teléfono válido.</mat-error>
+                </mat-form-field>
+              
+                <!-- Nombre Paciente -->
+                <mat-form-field class="w-full">
+                  <mat-label>Nombres Paciente</mat-label>
+                  <input matInput formControlName="nombresPaciente">
+                  <mat-error *ngIf="form.get('nombresPaciente')?.invalid && form.get('nombresPaciente')?.touched">Este campo es obligatorio.</mat-error>
+                </mat-form-field>
+              
+                <!-- Apellidos Paciente -->
+                <mat-form-field class="w-full">
+                  <mat-label>Apellidos Paciente</mat-label>
+                  <input matInput formControlName="apellidosPaciente">
+                  <mat-error *ngIf="form.get('apellidosPaciente')?.invalid && form.get('apellidosPaciente')?.touched">Este campo es obligatorio.</mat-error>
+                </mat-form-field>
+              
+                <!-- Cédula Paciente -->
+                <mat-form-field class="w-full">
+                  <mat-label>Cédula Paciente</mat-label>
+                  <input matInput formControlName="numeroIdPaciente" type="text">
+                  <mat-error *ngIf="form.get('numeroIdPaciente')?.invalid && form.get('numeroIdPaciente')?.touched">Este campo es obligatorio.</mat-error>
+                </mat-form-field>
+              
+                <!-- Tipo de Identificación Paciente -->
+                <mat-form-field class="w-full">
+                  <mat-label>Tipo de Identificación Paciente</mat-label>
+                  <input matInput formControlName="tipoIdPaciente">
+                  <mat-error *ngIf="form.get('tipoIdPaciente')?.invalid && form.get('tipoIdPaciente')?.touched">Este campo es obligatorio.</mat-error>
+                </mat-form-field>
+              
+                <mat-checkbox class="w-full" formControlName="isChecked" (change)="onCheckboxChange()">
+                    Sugerencia
+                  </mat-checkbox>
+                  
+                  <!-- Comentario -->
+                  <mat-form-field class="w-full" *ngIf="form.get('isChecked')?.value">
+                    <mat-label>Comentario</mat-label>
+                    <textarea matInput formControlName="comentario"></textarea>
+                    <mat-error *ngIf="form.get('comentario')?.invalid && form.get('comentario')?.touched">Este campo es obligatorio.</mat-error>
+                  </mat-form-field>
+
+                <!-- Aceptación Tratamiento de Datos -->
+                <mat-checkbox formControlName="isAccept" class="w-full" class="alinear">
+                    Acepto el tratamiento de datos
+                    <mat-icon (click)="openDialog()"
+                    >info</mat-icon>
+                </mat-checkbox>
+              
+              </div>
+              
+
+            <!-- Botón de Enviar -->
+            <button mat-raised-button color="primary" class="w-full mt-4" *ngIf="form.valid && form.get('isAccept')?.value " 
+                (click)="send()">Enviar</button>
+        </form>
+    </div>
+</div>
+
+<app-loading *ngIf="isLoading"></app-loading>
