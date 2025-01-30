@@ -123,7 +123,7 @@ export class FormPatAud implements OnInit {
                         horizontalPosition: 'center',
                     });
                     setTimeout(() => {
-                        window.location.href = 'https://es.wikipedia.org/wiki/Sandon%C3%A1';
+                        window.location.href = 'https://www.inphaprogroupsas.com/';
                       }, 2000);
                 }
             })
