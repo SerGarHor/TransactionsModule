@@ -112,6 +112,10 @@ export class SingupComponent implements OnInit {
                         this.isLoading = false;
                         let errorMessage = 'El correo ya ha sido registrado..';
                         this.showErrorMessage(errorMessage);
+                    } else if (res.httpStatusCode == 401) {
+                        this.isLoading = false;
+                        let errorMessage = "Hemos recibido su solicitud y queremos asegurarnos de que su información esté correctamente registrada en nuestro sistema. Le invitamos a revisar su acceso y, en caso de necesitar asistencia, no dude en contactarnos.";
+                        this.showErrorMessage(errorMessage);
                     }
                 },
                 error: (err) => {
