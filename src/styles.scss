@@ -6,3 +6,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @tailwind components;
 @tailwind utilities;
 
+
+button {
+    cursor: pointer;
+    background-color: #54FFDD;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.3rem;
+    border-radius: 20px;
+    color: #1B3083;
+}

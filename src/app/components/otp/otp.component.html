@@ -1,0 +1,17 @@
+<section class="flex items-center justify-center min-h-screen bg-gray-100 p-4">
+    <section class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md text-center">
+        <h1 class="text-xl font-semibold text-maintitle mb-2">Digita el OTP</h1>
+        <p class="my-4 text-sm sm:text-base">Recibirás un código OTP de 6 caracteres en tu correo. Ingrésalo a continuación para continuar al módulo de usuario.</p>
+
+        <div class="grid grid-cols-6 gap-2 justify-center mb-4">
+            <input *ngFor="let control of otpControls; let i = index" #otpInput id="otp-{{ i }}" type="text"
+                class="w-12 h-12 text-center border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                maxlength="1" [formControl]="control" (input)="handleInput($event, i)" (keydown)="handleBackspace($event, i)" />
+        </div>
+        <p *ngIf="otpError" class="text-red-500 text-center mb-2">{{ otpError }}</p>
+
+        <button (click)="enviarOTP()" class="w-full sm:w-4/5 md:w-3/5 lg:w-2/5 py-2 rounded-lg shadow-md ">
+            Enviar
+        </button>
+    </section>
+</section>

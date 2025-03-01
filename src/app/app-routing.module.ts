@@ -1,16 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormComponent } from './components/form/form.component';
-import { FormPatAud } from './components/form-pat-aud/form-pat-aud.component';
+import { LoginComponent } from './components/login/login.component';
+import { OtpComponent } from './components/otp/otp.component';
+import { SingupComponent } from './components/singup/singup.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: FormComponent
+    component: LoginComponent
   },
   {
-    path: 'form',
-    component: FormPatAud
+    path: 'singup',
+    component: SingupComponent
+  },
+  {
+    path: 'otp',
+    component: OtpComponent
   }
 ];
 

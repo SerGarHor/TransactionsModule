@@ -5,46 +5,38 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormComponent } from './components/form/form.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
-import { FormPatAud } from './components/form-pat-aud/form-pat-aud.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatIconModule} from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { LoginComponent } from './components/login/login.component';
+import { SharedModule } from './shared/shared.module';
+import { OtpComponent } from './components/otp/otp.component';
+import { SingupComponent } from './components/singup/singup.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormComponent,
-    FormPatAud,
-    LoadingComponent
+    LoginComponent,
+
+    LoadingComponent,
+    OtpComponent,
+    SingupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatInputModule,
-    HttpClientModule,
-    MatDatepickerModule,
-    MatCheckboxModule,
-    MatIconModule,
-    MatSnackBarModule,
-    MatProgressSpinnerModule
+    SharedModule
     
   ],
   providers: [],
