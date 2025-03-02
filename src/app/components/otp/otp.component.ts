@@ -88,14 +88,13 @@ export class OtpComponent {
             data = {
                 action: "VALIDATION_OTP",
                 otp: otpValue,
-                numberId: this.services.userData.numberId
+                numberId: this.services.userLogin.numberId
             }
         }
 
         this.services.validOtp(data).subscribe({
             next: (res: otpResponse) => {
                 this.isLoading = false;
-                console.log('Respuesta otp', res)
                 if (res.code == "201") {
                     let messages: object = {
                         title: 'El registro ha sido completado con éxito. 🎉',
@@ -122,7 +121,6 @@ export class OtpComponent {
     }
 
     openDialog(messages: any) {
-        console.log('messages', messages)
         Swal.fire({
             html: `
             <div style="max-height: 200px; overflow-y: auto; color: white; text-align: justify;">

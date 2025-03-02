@@ -9,6 +9,7 @@ import { singUpResponse } from "src/app/interfaces/response/singupResponse.inter
 import { LoginService } from "src/app/services/login.service";
 import { OtpValidator } from "src/app/shared/validators/otp.validator";
 import { CustomValidators } from "src/app/shared/validators/password.validator";
+import { environment } from "src/environments/environments";
 import Swal from 'sweetalert2';
 
 @Component({
@@ -30,6 +31,7 @@ export class SingupComponent implements OnInit {
     showAdditionalFields = false;
     errorMessage: string | null = null;
     habeasData: string = ''
+    imageUrl: string = ''
 
     listEps: epsResponse[] = []
 
@@ -53,12 +55,15 @@ export class SingupComponent implements OnInit {
             next: (res: epsResponse[]) => {
                 this.isLoading = false;
                 this.listEps = res
-                console.log('listEps', res)
             },
             error: (err) => {
 
             }
         });
+
+        this.services.infoCompany$.subscribe(res => {
+          this.imageUrl = `${environment.apiUrlImg}${res.rol}.png`
+          });
     }
 
     buildForm() {

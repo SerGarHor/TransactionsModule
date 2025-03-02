@@ -10,8 +10,9 @@ import { otpRequest } from '../interfaces/request/otpRequest.interface';
 import { epsResponse } from '../interfaces/response/epsResponse.interface';
 import { singUpRequest } from '../interfaces/request/singupRequest.interface';
 import { singUpResponse } from '../interfaces/response/singupResponse.interface';
+import { infoCompanyResponse } from '../interfaces/response/infoCompanyResponse.interface';
 
-const userData: UserLogin = {
+const userLogin: UserLogin = {
     numberId: '',
     code: '',
     rol: '',
@@ -35,6 +36,12 @@ const userSingUp: singUpRequest = {
     habeasData: ''
 }
 
+const infoCompany: infoCompanyResponse = {
+    code: '',
+    rol: '',
+    token: ''
+}
+
 @Injectable({
     providedIn: 'root'
 })
@@ -44,13 +51,13 @@ export class LoginService {
 
 
 
-    private _userLoggin = new BehaviorSubject<any>(userData);
+    private _userLoggin = new BehaviorSubject<any>(userLogin);
 
-    public get userData(): any {
+    public get userLogin(): any {
         return this._userLoggin.getValue();
     }
 
-    public set userData(v: any) {
+    public set userLogin(v: any) {
         this._userLoggin.next(v);
     }
 
@@ -65,6 +72,18 @@ export class LoginService {
         this._usersingup.next(v);
     }
 
+    private _infoCompany = new BehaviorSubject<infoCompanyResponse>(infoCompany);
+
+    public infoCompany$ = this._infoCompany.asObservable();
+
+    public get infoCompany(): infoCompanyResponse {
+        return this._infoCompany.getValue();
+      }
+
+    public set infoCompany(value: infoCompanyResponse) {
+        this._infoCompany.next(value);
+      }
+
     apiUrl = environment.apiUrl
 
     httpOptions = {
@@ -75,7 +94,13 @@ export class LoginService {
 
     constructor(private http: HttpClient) { }
 
-
+    getEpsWithid(data: object): Observable<infoCompanyResponse> {
+        return this.http.post<infoCompanyResponse>(
+            `${this.apiUrl}/registerUser`,
+            data,
+            this.httpOptions
+        );
+    }
 
     login(data: loginRequest): Observable<loginResponse> {
         return this.http.post<loginResponse>(
